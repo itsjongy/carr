@@ -3,6 +3,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
+import logo from './favicon.png';
 
 function LoginFormPage() {
     const dispatch = useDispatch();
@@ -26,45 +27,60 @@ function LoginFormPage() {
     }
 
     return (
-        <div class="container">
-            <div class="header"></div>
-            <div class="body"></div>
-            <div class="login-area">
-                <div class="login-box">
-                    <form
-                        onSubmit={handleSubmit}
-                        className='login-form'
-                    >
-                        <ul>
-                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                        </ul>
-                        <label>
-                            Username or Email
-                            <input
-                                type="text"
+        <div className="container">
+            <div className="body"></div>
+            <div className="login-area">
+                <div className="login-box">
+                    <div className="login-container">
+                        <form
+                            onSubmit={handleSubmit}
+                            className='login-form'
+                        >
+                            <img className='login-logo' src={logo} alt='' />
+                            <h6 className='login-title'>Log in to flickrio</h6>
+                            <ul>
+                                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                            </ul>
+                            <label
                                 className='login-username'
-                                value={credential}
-                                onChange={(e) => setCredential(e.target.value)}
-                                required
-                            />
-                        </label>
-                        <label>
-                            Password
-                            <input
-                                type="password"
+                            >
+                                Username or Email
+                                <div>
+                                    <input
+                                        type="text"
+                                        className='login-usernamebox'
+                                        value={credential}
+                                        onChange={(e) => setCredential(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                            </label>
+                            <label
                                 className='login-password'
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            />
-                        </label>
-                        <button type="submit">Sign In</button>
-                    </form>
-                    {/* </div> */}
+                            >
+                                Password
+                                <div>
+                                    <input
+                                        type="password"
+                                        className='login-passwordbox'
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                            </label>
+                            <button className='submitbutton' type="submit">Sign In</button>
+                            <hr></hr>
+                            <p className='login-signuptext'>
+                            Not a flickrio member?
+                                <a href='/signup' className='login-signup'> Sign up here.</a>
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
 export default LoginFormPage;
