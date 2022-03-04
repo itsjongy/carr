@@ -9,42 +9,45 @@
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
+    background: url(https://wallpaperaccess.com/full/5458.jpg) no-repeat center center;
   }
 
-  .body {
+  /* .body {
       grid-area: 1 / 1 / 2 / 4;
-      background: url(https://wallpaperaccess.com/full/5458.jpg) no-repeat center center;
-    }
+    } */
 
-  .signup-area {  display: grid;
+  .signup-area {
+    display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 642.4px 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
       "."
-      "login-box"
+      "signup-box"
       ".";
     grid-area: 1 / 2 / 2 / 3;
   }
 
-  .signup-box {  display: grid;
+  .signup-box {
+    display: grid;
     grid-template-columns: 1fr 304px 1fr;
     grid-template-rows: 1fr 377.6px 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
       ". . ."
-      ". login-container ."
+      ". signup-container ."
       ". . .";
-    grid-area: login-box;
+    grid-area: signup-box;
     background-color: white;
+    height: 610px;
     padding: 24px;
     border-radius: .25rem;
   }
 
   .signup-container {
-    grid-area: login-container;
+    grid-area: signup-container;
     display: flex;
     justify-content: center;
     align-items: center;

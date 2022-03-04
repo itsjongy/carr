@@ -31,63 +31,70 @@ function SignupFormPage() {
 
     return (
         <div className="container">
-            <div className="body"></div>
             <div className="signup-area">
                 <div className="signup-box">
                     <div className="signup-container">
-                        <form onSubmit={handleSubmit} className="signup-form">
-                            <ul>
-                                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                            </ul>
-                            <img className='signup-logo' src={logo} alt='' />
-                            <h6 className='signup-title'>Sign up for flickrio</h6>
-                            <label className='signup-email'>
-                                Email
-                                <input
-                                    type="text"
-                                    className='signup-emailbox'
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                />
-                            </label>
-                            <label className='signup-username'>
-                                Username
-                                <input
-                                    type="text"
-                                    className='signup-usernamebox'
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    required
-                                />
-                            </label>
-                            <label className='signup-password'>
-                                Password
-                                <input
-                                    type="password"
-                                    className='signup-passwordbox'
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                />
-                            </label>
-                            <label className='signup-confirmpassword'>
-                                Confirm Password
-                                <input
-                                    type="password"
-                                    className='signup-confirmpasswordbox'
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                    required
-                                />
-                            </label>
-                            <button className='signupsubmitbutton' type="submit">Sign up</button>
-                            <hr></hr>
-                            <p className='signup-logintext'>
-                                Already a Flickr member?
-                                <a href='/login' className='signup-login'> Log in here.</a>
-                            </p>
-                        </form>
+                        <div>
+                            <div>
+                                <img className='signup-logo' src={logo} alt='' />
+                            </div>
+                            <div>
+                                <h6 className='signup-title'>Sign up for flickrio</h6>
+                            </div>
+                            <div>
+                                <form onSubmit={handleSubmit} className="signup-form">
+                                    <ul>
+                                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                                    </ul>
+                                    <label className='signup-email'>
+                                        Email
+                                        <input
+                                            type="text"
+                                            className='signup-emailbox'
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required
+                                        />
+                                    </label>
+                                    <label className='signup-username'>
+                                        Username
+                                        <input
+                                            type="text"
+                                            className='signup-usernamebox'
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                            required
+                                        />
+                                    </label>
+                                    <label className='signup-password'>
+                                        Password
+                                        <input
+                                            type="password"
+                                            className='signup-passwordbox'
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                        />
+                                    </label>
+                                    <label className='signup-confirmpassword'>
+                                        Confirm Password
+                                        <input
+                                            type="password"
+                                            className='signup-confirmpasswordbox'
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            required
+                                        />
+                                    </label>
+                                    <button className='signupsubmitbutton' type="submit">Sign up</button>
+                                    <hr></hr>
+                                    <p className='signup-logintext'>
+                                        Already a Flickr member?
+                                        <a href='/login' className='signup-login'> Log in here.</a>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

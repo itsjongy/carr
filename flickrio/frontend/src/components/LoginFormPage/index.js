@@ -28,47 +28,56 @@ function LoginFormPage() {
 
     return (
         <div className="container">
-            <div className="body"></div>
             <div className="login-area">
                 <div className="login-box">
                     <div className="login-container">
-                        <form onSubmit={handleSubmit} className='login-form'>
-                            <ul>
-                                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                            </ul>
-                            <img className='login-logo' src={logo} alt='' />
-                            <h6 className='login-title'>Sign up for flickrio</h6>
-                            <label className='login-username'>
-                                Username or Email
-                                <div>
-                                    <input
-                                        type="text"
-                                        className='login-usernamebox'
-                                        value={credential}
-                                        onChange={(e) => setCredential(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                            </label>
-                            <label className='login-password'>
-                                Password
-                                <div>
-                                    <input
-                                        type="password"
-                                        className='login-passwordbox'
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                            </label>
-                            <button className='submitbutton' type="submit">Sign In</button>
-                            <hr></hr>
-                            <p className='login-signuptext'>
-                                Not a flickrio member?
-                                <a href='/signup' className='login-signup'> Sign up here.</a>
-                            </p>
-                        </form>
+                        <div>
+                            <div>
+                                <img className='login-logo' src={logo} alt='' />
+                            </div>
+                            <div>
+                                <h6 className='login-title'>Log in to flickrio</h6>
+                            </div>
+                            <div>
+                                <form onSubmit={handleSubmit} className='login-form'>
+                                    <div>
+                                        <ul>
+                                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                                        </ul>
+                                    </div>
+                                    <label className='login-username'>
+                                        Username or Email
+                                        <div>
+                                            <input
+                                                type="text"
+                                                className='login-usernamebox'
+                                                value={credential}
+                                                onChange={(e) => setCredential(e.target.value)}
+                                                required
+                                            />
+                                        </div>
+                                    </label>
+                                    <label className='login-password'>
+                                        Password
+                                        <div>
+                                            <input
+                                                type="password"
+                                                className='login-passwordbox'
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
+                                                required
+                                            />
+                                        </div>
+                                    </label>
+                                    <button className='submitbutton' type="submit">Sign In</button>
+                                    <hr></hr>
+                                    <p className='login-signuptext'>
+                                        Not a flickrio member?
+                                        <a href='/signup' className='login-signup'> Sign up here.</a>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -9,14 +9,15 @@
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
-}
-
-.body {
-  grid-area: 1 / 1 / 2 / 4;
   background: url(https://wallpaperaccess.com/full/5458.jpg) no-repeat center center;
 }
 
-.login-area {  display: grid;
+/* .body {
+  grid-area: 1 / 1 / 2 / 4;
+} */
+
+.login-area {
+  display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 425.6px 1fr;
   gap: 0px 0px;
@@ -28,7 +29,8 @@
   grid-area: 1 / 2 / 2 / 3;
 }
 
-.login-box {  display: grid;
+.login-box {
+  display: grid;
   grid-template-columns: 1fr 304px 1fr;
   grid-template-rows: 1fr 377.6px 1fr;
   gap: 0px 0px;
@@ -41,18 +43,19 @@
   background-color: white;
   padding: 24px;
   border-radius: .25rem;
+  height: fit-content;
 }
 
 .login-container {
   grid-area: login-container;
-  display: flex;
+  display:flex;
   justify-content: center;
   align-items: center;
 }
 
 .login-logo {
   margin-left: 125px;
-  margin-bottom: 15px;
+  margin-bottom: 1 5px;
 }
 
 .login-title {
