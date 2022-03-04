@@ -32,18 +32,13 @@ function LoginFormPage() {
             <div className="login-area">
                 <div className="login-box">
                     <div className="login-container">
-                        <form
-                            onSubmit={handleSubmit}
-                            className='login-form'
-                        >
-                            <img className='login-logo' src={logo} alt='' />
-                            <h6 className='login-title'>Log in to flickrio</h6>
+                        <form onSubmit={handleSubmit} className='login-form'>
                             <ul>
                                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                             </ul>
-                            <label
-                                className='login-username'
-                            >
+                            <img className='login-logo' src={logo} alt='' />
+                            <h6 className='login-title'>Sign up for flickrio</h6>
+                            <label className='login-username'>
                                 Username or Email
                                 <div>
                                     <input
@@ -55,9 +50,7 @@ function LoginFormPage() {
                                     />
                                 </div>
                             </label>
-                            <label
-                                className='login-password'
-                            >
+                            <label className='login-password'>
                                 Password
                                 <div>
                                     <input
@@ -72,7 +65,7 @@ function LoginFormPage() {
                             <button className='submitbutton' type="submit">Sign In</button>
                             <hr></hr>
                             <p className='login-signuptext'>
-                            Not a flickrio member?
+                                Not a flickrio member?
                                 <a href='/signup' className='login-signup'> Sign up here.</a>
                             </p>
                         </form>

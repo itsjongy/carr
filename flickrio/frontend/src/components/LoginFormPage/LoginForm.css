@@ -1,10 +1,3 @@
-html {
-  width: 100%;
-  height: 100%;
-  background: url(https://wallpaperaccess.com/full/5458.jpg) no-repeat center center;
-  font-family: 'Proxima Nova', Helvetica, sans-serif;
-}
-
 .container {
   position: fixed;
   top: 0px;
@@ -18,7 +11,10 @@ html {
   grid-auto-flow: row;
 }
 
-.body { grid-area: 1 / 1 / 2 / 4; }
+.body {
+  grid-area: 1 / 1 / 2 / 4;
+  background: url(https://wallpaperaccess.com/full/5458.jpg) no-repeat center center;
+}
 
 .login-area {  display: grid;
   grid-template-columns: 1fr;
@@ -76,6 +72,10 @@ html {
   border-radius: .25rem
 }
 
+.login-usernamebox:focus {
+  outline-color: #128fdc;
+  }
+
 .login-password {
   padding-top: 20px;
 }
@@ -87,6 +87,10 @@ html {
   border-color: rgb(137,137,137);
   border-radius: .25rem;
   margin-bottom: 20px;
+}
+
+.login-passwordbox:focus {
+outline-color: #128fdc;
 }
 
 .submitbutton{
@@ -106,6 +110,7 @@ html {
 }
 
 .login-signuptext {
+  margin-top: 20px;
   text-align: center;
   font-size: 14px;
 }

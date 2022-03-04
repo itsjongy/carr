@@ -1,0 +1,143 @@
+.container {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: grid;
+    grid-template-columns: 1fr 352px 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+  }
+
+  .body {
+      grid-area: 1 / 1 / 2 / 4;
+      background: url(https://wallpaperaccess.com/full/5458.jpg) no-repeat center center;
+    }
+
+  .signup-area {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 642.4px 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "."
+      "login-box"
+      ".";
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  .signup-box {  display: grid;
+    grid-template-columns: 1fr 304px 1fr;
+    grid-template-rows: 1fr 377.6px 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . ."
+      ". login-container ."
+      ". . .";
+    grid-area: login-box;
+    background-color: white;
+    padding: 24px;
+    border-radius: .25rem;
+  }
+
+  .signup-container {
+    grid-area: login-container;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .signup-logo {
+    margin-left: 125px;
+    margin-bottom: 15px;
+  }
+
+  .signup-title {
+    margin: 0px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  .signup-emailbox {
+    padding: 15px 16px;
+    width: 304px;
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    margin-bottom: 20px;
+  }
+
+  .signup-emailbox:focus{
+    outline-color: #128fdc;
+  }
+
+  .signup-usernamebox {
+    padding: 15px 16px;
+    width: 304px;
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    margin-bottom: 20px;
+  }
+
+  .signup-usernamebox:focus{
+    outline-color: #128fdc;
+  }
+
+  .signup-passwordbox {
+    padding: 15px 16px;
+    width: 304px;
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    margin-bottom: 20px;
+  }
+
+  .signup-passwordbox:focus{
+    outline-color: #128fdc;
+  }
+
+  .signup-confirmpasswordbox {
+    padding: 15px 16px;
+    width: 304px;
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    margin-bottom: 20px;
+  }
+
+  .signup-confirmpasswordbox:focus{
+    outline-color: #128fdc;
+  }
+
+  .signupsubmitbutton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 24px;
+    width: 304px;
+    height: 40px;
+    color: white;
+    background-color: #128fdc;
+    font-size: 16px;
+    font-weight: 600;
+    border: #128fdc;
+    border-radius: .25rem;
+    margin-bottom: 25px;
+  }
+
+  .signup-logintext {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .signup-login {
+    text-decoration: none;
+    color: #006dac;
+  }
