@@ -1,8 +1,47 @@
-.navigation {
+.nav-container {
     position: fixed;
-    top: 0px;
-    height: 48px;
-    width: 100vw;
-    background-color: rgb(33,33,36);
     z-index: 10;
+    display: grid;
+    grid-template-columns: 0.4fr 2.2fr 0.4fr;
+    grid-template-rows: 48px;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "navigation navigation navigation";
+    background-color: rgb(33,33,36);
+  }
+
+.navigation {
+    display: grid;
+    grid-template-columns: 0.3fr 2.4fr 0.3fr;
+    grid-template-rows: 48px;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". nav-content .";
+    grid-area: navigation;
+    width: 100vw;
+  }
+
+.nav-content {
+    display: grid;
+    justify-content: space-around;
+    align-items: center;
+    grid-template-columns: 98px 1fr 196px;
+    grid-template-rows: 48px;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "nav-logopic . nav-buttons";
+    grid-area: nav-content;
+}
+
+.nav-logopic {
+    height: 21.61px;
+    padding-left: 0px;
+    grid-area: nav-logopic;
+}
+
+.nav-buttons {
+    grid-area: nav-buttons;
 }

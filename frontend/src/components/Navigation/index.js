@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import logo from './flickriologo.png'
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -22,13 +23,23 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <div className='navigation'>
-      <ul>
-        <li>
-          <NavLink exact to="/">Home</NavLink>
-          {isLoaded && sessionLinks}
-        </li>
-      </ul >
+    <div className='nav-container'>
+      <div className='navigation'>
+        <div className='nav-content'>
+          <div className='nav-logo'>
+            <a href='/'>
+              <img className='nav-logopic' src={logo} alt='' />
+            </a>
+          </div>
+          <div className='nav-buttons'>
+            <div className='nav-user'>
+              <ul>
+                {isLoaded && sessionLinks}
+              </ul >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
