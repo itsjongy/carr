@@ -11,14 +11,33 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <div className='profilebutton'>
+        <ProfileButton user={sessionUser} />
+      </div>
     );
   } else {
     sessionLinks = (
-      <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
-      </>
+      <div className='nav-loginsign'>
+        <div className='nav-signup'>
+          <NavLink to="/signup" style={{ textDecoration: 'none', color: 'white' }}>Sign up</NavLink>
+        </div>
+        <div className='nav-login'>
+          <NavLink to="/login" style={{ textDecoration: 'none', color: 'white' }}>Log in</NavLink>
+        </div>
+      </div>
+    );
+  }
+
+  let sessionYou;
+  if (sessionUser) {
+    sessionYou = (
+      <div>
+        <a className='nav-profile' href='/profile'>You</a>
+      </div>
+    );
+  } else {
+    sessionYou = (
+      <></>
     );
   }
 
@@ -30,13 +49,17 @@ function Navigation({ isLoaded }) {
             <a href='/'>
               <img className='nav-logopic' src={logo} alt='' />
             </a>
+            <div className='nav-exploreyou'>
+              <div>
+                <a className='nav-explore' href='/explore'>Explore</a>
+              </div>
+              <div>
+                {isLoaded && sessionYou}
+              </div>
+            </div>
           </div>
           <div className='nav-buttons'>
-            <div className='nav-user'>
-              <ul>
-                {isLoaded && sessionLinks}
-              </ul >
-            </div>
+            {isLoaded && sessionLinks}
           </div>
         </div>
       </div>

@@ -26,6 +26,13 @@ function LoginFormPage() {
             });
     }
 
+    const demoSubmit = (e) => {
+        e.preventDefault();
+        const credential = 'demo';
+        const password = 'password';
+        return dispatch(sessionActions.login({ credential, password }));
+    }
+
     return (
         <div className="container">
             <div className="login-area">
@@ -74,6 +81,10 @@ function LoginFormPage() {
                                     <p className='login-signuptext'>
                                         Not a flickrio member?
                                         <a href='/signup' className='login-signup'> Sign up here.</a>
+                                    </p>
+                                    <p className='demo'>
+                                        Want to test the site?
+                                        <p className='demo-button' onClick={demoSubmit}>Click here.</p>
                                     </p>
                                 </form>
                             </div>

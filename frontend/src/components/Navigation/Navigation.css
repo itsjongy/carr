@@ -8,7 +8,7 @@
     grid-auto-flow: row;
     grid-template-areas:
       "navigation navigation navigation";
-    background-color: rgb(33,33,36);
+    background-color: rgba(33,33,33);
   }
 
 .navigation {
@@ -36,12 +36,108 @@
     grid-area: nav-content;
 }
 
+.nav-logo{
+    display: flex;
+    align-items: flex-end;
+}
+
 .nav-logopic {
     height: 21.61px;
     padding-left: 0px;
     grid-area: nav-logopic;
+    margin-right: 40px;
+}
+
+.nav-exploreyou {
+    display: flex;
+}
+
+.nav-explore {
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    margin-right: 40px;
+}
+
+.nav-profile {
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
 }
 
 .nav-buttons {
     grid-area: nav-buttons;
+}
+
+.nav-loginsign {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav-signup {
+    padding: 4px 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-login {
+    padding: 4px 10px;
+    text-decoration: none;
+    background-color: #128fdc;
+    border-radius: .25rem;
+    color: white;
+}
+
+.profilebutton {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.fas.fa-user-circle{
+    font-size: 24px;
+    color: white;
+}
+
+.profile-dropdown {
+    position: absolute;
+    z-index: 2006;
+    width: 300px;
+    margin-top: 165px;
+    padding: 13px 13px 13px 13px;
+    background-color: white;
+    color: black;
+    border-radius: 3px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 30%), 0 1px 4px 0 rgb(0 0 0 / 20%);
+}
+
+.profile-username {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.profile-linebreak1 {
+    height: 1px;
+    background-color: #E1E1E1;
+    border: none;
+}
+
+.profile-cs {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-contactus {
+    font-size: 15px;
+    text-decoration: none;
+    color: #212121;
+}
+
+.profile-logout {
+    font-size: 15px;
+    text-decoration: none;
+    color: #212121;
 }

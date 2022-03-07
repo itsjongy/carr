@@ -48,7 +48,7 @@
 
 .login-container {
   grid-area: login-container;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -120,5 +120,17 @@ outline-color: #128fdc;
 
 .login-signup {
   text-decoration: none;
+  color: #006dac;
+}
+
+.demo {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.demo-button {
+  margin-left: 4px;
   color: #006dac;
 }
