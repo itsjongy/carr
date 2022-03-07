@@ -40,7 +40,7 @@ function ProfileButton({ user }) {
           </div>
           <hr className="profile-linebreak1"></hr>
           <div className="profile-cs">
-            <a className="profile-contactus" href="/contactus">Contact us</a>
+            <a className="profile-contactus" href="/about">About</a>
           </div>
           <div>
             {/* <button className="profile-logbutton" onClick={logout}>Log out</button> */}
