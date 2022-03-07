@@ -34,16 +34,32 @@ function Slideshow() {
 
     return (
         <div className='landing-container'>
+            <div className='landing-texts'>
+                <div>
+                    <p className='landing-text1'>Find your cutie.</p>
+                </div>
+                <div>
+                    <p className='landing-text2'>
+                        Join the flickrio community, home to tens of billions of
+                        <div>
+                            photos and Sanrio fans.
+                        </div>
+                    </p>
+                </div>
+                <div>
+                    <a href='/signup'>
+                        <button className='landing-button'>Start for free</button>
+                    </a>
+                </div>
+            </div>
             <div className='landing-slideshow'>
                 <div className='landing-slideshowSlider' style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
                     {images.map((image, index) => (
                         <img className='landing-slide' key={index} src={image} alt=""></img>
                     ))}
                 </div>
-                {/* <div className='landing-texts'>
-                    <p>Find your inspiration.</p>
-                </div> */}
             </div>
+            {/* maybe include a footer? */}
         </div>
     )
 }
