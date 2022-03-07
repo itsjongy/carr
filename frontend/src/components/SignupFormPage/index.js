@@ -89,7 +89,7 @@ function SignupFormPage() {
                                     <button className='signupsubmitbutton' type="submit">Sign up</button>
                                     <hr></hr>
                                     <p className='signup-logintext'>
-                                        Already a Flickr member?
+                                        Already a flickrio member?
                                         <a href='/login' className='signup-login'> Log in here.</a>
                                     </p>
                                 </form>

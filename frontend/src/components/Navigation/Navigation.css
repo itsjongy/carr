@@ -8,7 +8,7 @@
     grid-auto-flow: row;
     grid-template-areas:
       "navigation navigation navigation";
-    background-color: rgba(33,33,33);
+    background-color: rgb(33, 33, 33);
   }
 
 .navigation {

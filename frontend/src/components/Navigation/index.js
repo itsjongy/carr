@@ -32,6 +32,7 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionYou = (
       <div>
+        <a className='nav-explore' href='/explore'>Explore</a>
         <a className='nav-profile' href='/profile'>You</a>
       </div>
     );
@@ -50,9 +51,6 @@ function Navigation({ isLoaded }) {
               <img className='nav-logopic' src={logo} alt='' />
             </a>
             <div className='nav-exploreyou'>
-              <div>
-                <a className='nav-explore' href='/explore'>Explore</a>
-              </div>
               <div>
                 {isLoaded && sessionYou}
               </div>

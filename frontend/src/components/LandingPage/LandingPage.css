@@ -1,0 +1,19 @@
+.landing-slideshow{
+    position: fixed;
+    display: inline-block;
+    margin: 0;
+    padding: none;
+    overflow: hidden;
+    width: 100vw;
+    z-index: -3;
+}
+
+.landing-slideshowSlider {
+    white-space: nowrap;
+    transition: ease 1000ms;
+}
+
+.landing-slide {
+    display: inline-block;
+    width: 100%;
+}
