@@ -43,7 +43,6 @@ function ProfileButton({ user }) {
             <a className="profile-contactus" href="/about">About</a>
           </div>
           <div>
-            {/* <button className="profile-logbutton" onClick={logout}>Log out</button> */}
             <a className="profile-logout" href='/' onClick={logout}>Log out</a>
           </div>
         </ul>
