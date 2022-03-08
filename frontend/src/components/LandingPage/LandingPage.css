@@ -67,3 +67,13 @@
 
 /* -------------------------------------------------------------------------- */
 
+.postlanding-container {
+    display: grid;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+    z-index: 5;
+}
+.s{
+    font-size: 100px;
+}

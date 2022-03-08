@@ -32,7 +32,7 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionYou = (
       <div>
-        <a className='nav-explore' href='/explore'>Explore</a>
+        <a className='nav-explore' href='/images'>Explore</a>
         <a className='nav-profile' href='/profile'>You</a>
       </div>
     );

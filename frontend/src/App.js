@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import LandingPage from "./components/LandingPage"
 import * as sessionActions from "./store/session";
+import Images from "./components/Images/Images";
 import Image from "./components/Image/Image"
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/images">
-
+            <Images />
           </Route>
           <Route path="/images/:id">
             <Image />
