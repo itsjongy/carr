@@ -4,8 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
-import * as sessionActions from "./store/session";
 import LandingPage from "./components/LandingPage"
+import * as sessionActions from "./store/session";
+import Image from "./components/Image/Image"
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,12 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/images">
+
+          </Route>
+          <Route path="/images/:id">
+            <Image />
           </Route>
         </Switch>
       )}
