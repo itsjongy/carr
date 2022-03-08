@@ -21,9 +21,11 @@ const addImages = (newImage) => ({
 
 export const getImages = () => async dispatch => {
     const response = await fetch("/api/images");
+    console.log("@@@@@@@@@@", response)
 
     if (response.ok) {
         const images = await response.json();
+        console.log("++++++++++++", images)
         dispatch(loadImages(images));
         return images;
     };

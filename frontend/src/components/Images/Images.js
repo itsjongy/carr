@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getImages } from "../../store/image";
-import Image from "../Image/Image";
 import './Images.css'
 
 const Images = () => {
     const dispatch = useDispatch();
     const imagesObj = useSelector(state => state.imageState.entries);
-    const images = Object.values(imagesObj)
-    console.log("-------", images)
+    const images = Object.values(imagesObj);
 
     useEffect(() => {
         dispatch(getImages())
@@ -17,8 +15,10 @@ const Images = () => {
     return (
         <div>
             <p className="sasd">Images</p>
-            {images.map(({ id, imageUrl }) => (
-                <Image key={id} id={id} content={imageUrl} />
+            {images.map(image => (
+                <ul key={image.id}>
+                    <img src={image.imageUrl} alt='image unavailable'/>
+                </ul>
             ))}
         </div>
     )
