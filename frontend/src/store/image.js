@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_IMAGES = "images/loadImages";
 const LOAD_ONE = "images/loadOne";
 const ADD_IMAGES = "images/addImages";
+const UPDATE_IMAGES = "images/updateImages"
 
 const loadImages = (images) => ({
     type: LOAD_IMAGES,
@@ -17,6 +18,11 @@ const loadImage = (image) => ({
 const addImages = (newImage) => ({
     type: ADD_IMAGES,
     newImage
+});
+
+const updateImages = (images) => ({
+    type: UPDATE_IMAGES,
+    images
 });
 
 export const getImages = () => async dispatch => {
@@ -53,18 +59,18 @@ export const addImage = data => async dispatch => {
     };
 };
 
-// export const editImage = (imageId) => async dispatch => {
-//     const response = await fetch(`/api/images/${imageId.id}/edit`, {
-//         method: "PUT",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify(imageId)
-//     });
-//     if (response.ok) {
-//         const editImage = await response.json();
-//         dispatch(addImages(editImage));
-//         return editImage;
-//     };
-// }
+export const updateImage = (images) => async dispatch => {
+    const response = await csrfFetch(`/api/images/${imageId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(images)
+    });
+    if (response.ok) {
+        const image = await response.json();
+        dispatch(updateImages(image));
+        return image;
+    };
+};
 
 const initialState = {
     entries: {},
@@ -105,6 +111,12 @@ const imageReducer = (state = initialState, action) => {
                     ...action.newImage
                 }
             };
+        case UPDATE_IMAGES:
+            newState = { ...state };
+            newEntries = {};
+            newEntries[action.image?.id] = action.image;
+            newState.entries = newEntries;
+            return newState;
         default:
             return state;
     };
