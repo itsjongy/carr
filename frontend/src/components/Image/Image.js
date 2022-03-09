@@ -8,7 +8,6 @@ const Image = () => {
     const dispatch = useDispatch();
     const imageId = useParams();
     const imageObject = useSelector(state => state.imageState.entries);
-    console.log("-------", imageObject)
     const image = imageObject[imageId.id];
 
     useEffect(() => {

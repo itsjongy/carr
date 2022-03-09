@@ -8,10 +8,12 @@ import LandingPage from "./components/LandingPage"
 import * as sessionActions from "./store/session";
 import Images from "./components/Images/Images";
 import Image from "./components/Image/Image"
+import CreateImage from "./components/CreateImagePage";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -32,6 +34,9 @@ function App() {
           </Route>
           <Route exact path="/images">
             <Images />
+          </Route>
+          <Route path="/images/new">
+            <CreateImage />
           </Route>
           <Route path="/images/:id">
             <Image />

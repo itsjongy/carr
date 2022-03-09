@@ -17,7 +17,7 @@ const Images = () => {
             <p className="sasd">Images</p>
             {images.map(image => (
                 <ul key={image.id}>
-                    <img src={image.imageUrl} alt='image unavailable'/>
+                    <img src={image.imageUrl} alt='unavailable'/>
                 </ul>
             ))}
         </div>

@@ -20,19 +20,18 @@ const addImages = (newImage) => ({
 });
 
 export const getImages = () => async dispatch => {
-    const response = await fetch("/api/images");
-    console.log("@@@@@@@@@@", response)
+    const response = await csrfFetch("/api/images");
 
     if (response.ok) {
         const images = await response.json();
-        console.log("++++++++++++", images)
         dispatch(loadImages(images));
         return images;
     };
 }
 
 export const getImage = imageId => async dispatch => {
-    const response = await fetch(`/api/images/${imageId}`);
+    console.log("hohohoohoho", imageId)
+    const response = await csrfFetch(`/api/images/${imageId}`);
 
     if (response.ok) {
         const image = await response.json();
@@ -91,10 +90,11 @@ const imageReducer = (state = initialState, action) => {
             newState.entries = newEntries;
             return newState;
         case ADD_IMAGES:
-            if (!state[action.pokemon.id]) {
+            if (!state[action.newImage.id]) {
                 const newState = {
                     ...state,
-                    [action.newImage.id]: action.newImage
+                    // [action.newImage.id]: action.newImage
+                    newImage: action.newImage
                 };
                 return newState;
             };

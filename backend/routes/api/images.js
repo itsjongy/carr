@@ -9,7 +9,6 @@ const db = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
-    console.log("=============")
     const image = await db.Image.findAll();
     return res.json(image);
 
