@@ -26,23 +26,25 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.json(image);
 }));
 
-router.put('/:id', imageValidations.validateCreate, asyncHandler(async (req, res) => {
-    const id = req.body.id;
-    delete req.body.id;
-    await Image.update(req.body, {
+router.put('/:id/edit', asyncHandler(async (req, res) => {
+    const { id, content, imageUrl } = req.body;
+    await db.Image.update({ content, imageUrl }, {
         where: { id },
-        returning: true,
-        plain: true
+        returning: true
     });
-    const image = await Image.findbyPk(id);
+    const image = await db.Image.findOne({
+        where: { id: parseInt(id) }
+    });
     return res.json(image);
 }));
 
-router.delete('/:id', asyncHandler(async (req, res) => {
-    const image = await Image.findbyPk(req.params.id);
+router.delete('/:id/edit', asyncHandler(async (req, res) => {
+    console.log("heheheeheheheh", image)
+    const image = await db.Image.findOne(req.params.id);
     if (!image) throw new Error("Can't find image.");
-
-    await Image.destroy({ where: { id: image.id } });
+    await db.Image.destroy({
+        where: { id: image.id }
+    });
     return res.json({ id: image.id });
 }));
 

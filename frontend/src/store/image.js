@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_IMAGES = "images/loadImages";
 const LOAD_ONE = "images/loadOne";
 const ADD_IMAGES = "images/addImages";
-const UPDATE_IMAGES = "images/updateImages"
+const DELETE_IMAGES = "images/deleteImages"
 
 const loadImages = (images) => ({
     type: LOAD_IMAGES,
@@ -20,9 +20,9 @@ const addImages = (newImage) => ({
     newImage
 });
 
-const updateImages = (images) => ({
-    type: UPDATE_IMAGES,
-    images
+const deleteImages = (deleteImage) => ({
+    type: DELETE_IMAGES,
+    deleteImage
 });
 
 export const getImages = () => async dispatch => {
@@ -36,7 +36,6 @@ export const getImages = () => async dispatch => {
 }
 
 export const getImage = imageId => async dispatch => {
-    console.log("hohohoohoho", imageId)
     const response = await csrfFetch(`/api/images/${imageId}`);
 
     if (response.ok) {
@@ -52,6 +51,7 @@ export const addImage = data => async dispatch => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     });
+
     if (response.ok) {
         const newImage = await response.json();
         dispatch(addImages(newImage));
@@ -59,16 +59,29 @@ export const addImage = data => async dispatch => {
     };
 };
 
-export const updateImage = (images) => async dispatch => {
-    const response = await csrfFetch(`/api/images/${imageId}`, {
+export const updateImage = image => async dispatch => {
+    const response = await csrfFetch(`/api/images/${image.id}/edit`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(images)
+        body: JSON.stringify(image)
     });
+
     if (response.ok) {
-        const image = await response.json();
-        dispatch(updateImages(image));
-        return image;
+        const updatedImage = await response.json();
+        dispatch(loadImage(updatedImage));
+        return updatedImage;
+    };
+};
+
+export const deleteImage = (image, imageId) => async dispatch => {
+    const response = await csrfFetch(`/api/images/${image.id}/edit`, {
+        method: "DELETE"
+    });
+
+    if (response.ok) {
+        const { id: deletedItemId } = await response.json();
+        dispatch(deleteImages(deletedItemId, imageId));
+        return deletedItemId;
     };
 };
 
@@ -111,11 +124,9 @@ const imageReducer = (state = initialState, action) => {
                     ...action.newImage
                 }
             };
-        case UPDATE_IMAGES:
+        case DELETE_IMAGES:
             newState = { ...state };
-            newEntries = {};
-            newEntries[action.image?.id] = action.image;
-            newState.entries = newEntries;
+            delete newState[action.image.id];
             return newState;
         default:
             return state;

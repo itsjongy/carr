@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateImage } from "../../store/image";
+import { useHistory, useParams } from "react-router-dom";
+import { updateImage, deleteImage } from "../../store/image";
 
-const EditImage = ({ image, hideForm }) => {
+const EditImage = () => {
+    const img = useSelector(state => state.imageState.entries);
     const dispatch = useDispatch();
+    const { id } = useParams();
+    const history = useHistory();
 
-    const [imageUrl, setImageUrl] = useState(image.imageUrl);
-    const [content, setContent] = useState(image.content);
+    const [imageUrl, setImageUrl] = useState(img.imageUrl);
+    const [content, setContent] = useState(img.content);
 
     const updateImageUrl = (e) => setImageUrl(e.target.value);
     const updateContent = (e) => setContent(e.target.value);
@@ -14,25 +18,43 @@ const EditImage = ({ image, hideForm }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const payload = {
-            ...image,
+        let updatedImage = {
+            id: id,
             imageUrl,
             content
         };
 
-        const updatedImage = await dispatch(updateImage(payload));
         if (updatedImage) {
-            hideForm();
+            const updateImg = await dispatch(updateImage(updatedImage));
+            history.push(`/images/${updateImg.id}`);
         }
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+
+        let deletedImage = {
+            id: id,
+            imageUrl,
+            content
+        };
+        if (deletedImage) {
+            dispatch(deleteImage(deletedImage));
+            history.push(`/images`);
+        };
     }
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        hideForm();
+        history.push(`/images/${img?.id}`);
     };
 
     return (
         <section className="edit-form-holder">
+            <div>
+                <p className="as">dfsdafsdfsafdsa</p>
+                SDOINFDGSAINOAOSIDGNOIDSGNGDSIONGSDNIOK
+            </div>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -41,11 +63,12 @@ const EditImage = ({ image, hideForm }) => {
                     onChange={updateImageUrl} />
                 <input
                     type="text"
-                    placeholder="Move 2"
+                    placeholder="Content"
                     value={content}
                     onChange={updateContent} />
                 <button type="submit">Update Image</button>
                 <button type="button" onClick={handleCancelClick}>Cancel</button>
+                <button type="submit" onClick={handleDelete}>Delete</button>
             </form>
         </section>
     );

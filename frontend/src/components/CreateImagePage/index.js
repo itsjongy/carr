@@ -4,21 +4,15 @@ import { useHistory } from 'react-router-dom';
 import { addImage } from "../../store/image";
 
 const CreateImage = () => {
-    const sessionUser = useSelector(state => state.session.User);
+    const sessionUser = useSelector(state => state.session.user);
+    console.log("HAHAHAHAHAHHAHA", sessionUser)
     const dispatch = useDispatch();
     const history = useHistory();
-
     const [imageUrl, setImageUrl] = useState('');
     const [content, setContent] = useState('');
 
     const updateImageUrl = (e) => setImageUrl(e.target.value);
     const updateContent = (e) => setContent(e.target.value);
-
-    // const reset = () => {
-    //     setImageUrl("");
-    //     setContent("");
-    // }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,22 +22,23 @@ const CreateImage = () => {
             content
         };
 
+        console.log("HEHEHEHEHEHEHEHEH", createdImage)
+
         if (createdImage) {
             const newImage = await dispatch(addImage(createdImage));
             history.push(`/images/${newImage.id}`);
         }
-
-        // reset();
     }
 
     const handleCancelClick = (e) => {
         e.preventDefault();
+        history.push(`/images`);
     };
 
     return (
         <section className="new-form-holder centered middled">
+            <p className='s'>sssss</p>
             <form className="createimage-form" onSubmit={handleSubmit}>
-                <p className='s'>sssss</p>
                 <input
                     type="text"
                     placeholder="Image url"

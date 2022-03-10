@@ -9,6 +9,7 @@ import * as sessionActions from "./store/session";
 import Images from "./components/Images/Images";
 import Image from "./components/Image/Image"
 import CreateImage from "./components/CreateImagePage";
+import EditImage from "./components/EditImagePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,8 +39,11 @@ function App() {
           <Route path="/images/new">
             <CreateImage />
           </Route>
-          <Route path="/images/:id">
+          <Route exact path="/images/:id">
             <Image />
+          </Route>
+          <Route exact path="/images/:id/edit">
+            <EditImage/>
           </Route>
         </Switch>
       )}
