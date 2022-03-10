@@ -39,7 +39,6 @@ router.put('/:id/edit', requireAuth, imageValidations.validateUpdate, asyncHandl
 }));
 
 router.delete('/:id', requireAuth, asyncHandler(async (req, res) => {
-    console.log("++++++", req.params)
     const image = await db.Image.findOne({
         where: { id: parseInt(req.params.id) }
     });
