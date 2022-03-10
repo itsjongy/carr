@@ -26,7 +26,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.json(image);
 }));
 
-router.put('/:id/edit', asyncHandler(async (req, res) => {
+router.put('/:id/edit', requireAuth, imageValidations.validateUpdate, asyncHandler(async (req, res) => {
     const { id, content, imageUrl } = req.body;
     await db.Image.update({ content, imageUrl }, {
         where: { id },
@@ -38,17 +38,17 @@ router.put('/:id/edit', asyncHandler(async (req, res) => {
     return res.json(image);
 }));
 
-router.delete('/:id/edit', asyncHandler(async (req, res) => {
-    console.log("heheheeheheheh", image)
-    const image = await db.Image.findOne(req.params.id);
-    if (!image) throw new Error("Can't find image.");
-    await db.Image.destroy({
-        where: { id: image.id }
+router.delete('/:id', requireAuth, asyncHandler(async (req, res) => {
+    console.log("++++++", req.params)
+    const image = await db.Image.findOne({
+        where: { id: parseInt(req.params.id) }
     });
-    return res.json({ id: image.id });
+    if (!image) throw new Error("Can't find image.");
+    await image.destroy();
+    return res.json(image.id);
 }));
 
-router.post('/new', requireAuth, asyncHandler(async (req, res) => {
+router.post('/new', requireAuth, imageValidations.validateCreate, asyncHandler(async (req, res) => {
     const image = await db.Image.create(req.body);
     res.json(image);
 }));

@@ -30,7 +30,7 @@ const EditImage = () => {
         }
     }
 
-    const handleDelete = (e) => {
+    const handleDelete = async (e) => {
         e.preventDefault();
 
         let deletedImage = {
@@ -38,15 +38,19 @@ const EditImage = () => {
             imageUrl,
             content
         };
+
         if (deletedImage) {
-            dispatch(deleteImage(deletedImage));
-            history.push(`/images`);
+            const deleteId = await dispatch(deleteImage(id));
+            console.log("between dispatch and history.push -----------")
+            if (deleteId) {
+                history.push(`/images`);
+            }
         };
     }
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        history.push(`/images/${img?.id}`);
+        history.push(`/images/${id}`);
     };
 
     return (

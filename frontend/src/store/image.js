@@ -20,9 +20,9 @@ const addImages = (newImage) => ({
     newImage
 });
 
-const deleteImages = (deleteImage) => ({
+const deleteImages = (deleteId) => ({
     type: DELETE_IMAGES,
-    deleteImage
+    deleteId
 });
 
 export const getImages = () => async dispatch => {
@@ -73,15 +73,17 @@ export const updateImage = image => async dispatch => {
     };
 };
 
-export const deleteImage = (image, imageId) => async dispatch => {
-    const response = await csrfFetch(`/api/images/${image.id}/edit`, {
+export const deleteImage = (imageId) => async dispatch => {
+    console.log("delete thunk");
+    const response = await csrfFetch(`/api/images/${imageId}`, {
         method: "DELETE"
     });
-
+    console.log("=============", response)
     if (response.ok) {
-        const { id: deletedItemId } = await response.json();
-        dispatch(deleteImages(deletedItemId, imageId));
-        return deletedItemId;
+        const deletedId = await response.json();
+        console.log("__________", deletedId)
+        dispatch(deleteImages(deletedId));
+        return deletedId;
     };
 };
 
@@ -126,7 +128,7 @@ const imageReducer = (state = initialState, action) => {
             };
         case DELETE_IMAGES:
             newState = { ...state };
-            delete newState[action.image.id];
+            delete newState.entries[action.deleteId];
             return newState;
         default:
             return state;
