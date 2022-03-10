@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_IMAGES = "images/loadImages";
 const LOAD_ONE = "images/loadOne";
 const ADD_IMAGES = "images/addImages";
+const DELETE_IMAGES = "images/deleteImages"
 
 const loadImages = (images) => ({
     type: LOAD_IMAGES,
@@ -19,6 +20,11 @@ const addImages = (newImage) => ({
     newImage
 });
 
+const deleteImages = (deleteId) => ({
+    type: DELETE_IMAGES,
+    deleteId
+});
+
 export const getImages = () => async dispatch => {
     const response = await csrfFetch("/api/images");
 
@@ -30,7 +36,6 @@ export const getImages = () => async dispatch => {
 }
 
 export const getImage = imageId => async dispatch => {
-    console.log("hohohoohoho", imageId)
     const response = await csrfFetch(`/api/images/${imageId}`);
 
     if (response.ok) {
@@ -46,6 +51,7 @@ export const addImage = data => async dispatch => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     });
+
     if (response.ok) {
         const newImage = await response.json();
         dispatch(addImages(newImage));
@@ -53,18 +59,33 @@ export const addImage = data => async dispatch => {
     };
 };
 
-// export const editImage = (imageId) => async dispatch => {
-//     const response = await fetch(`/api/images/${imageId.id}/edit`, {
-//         method: "PUT",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify(imageId)
-//     });
-//     if (response.ok) {
-//         const editImage = await response.json();
-//         dispatch(addImages(editImage));
-//         return editImage;
-//     };
-// }
+export const updateImage = image => async dispatch => {
+    const response = await csrfFetch(`/api/images/${image.id}/edit`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(image)
+    });
+
+    if (response.ok) {
+        const updatedImage = await response.json();
+        dispatch(loadImage(updatedImage));
+        return updatedImage;
+    };
+};
+
+export const deleteImage = (imageId) => async dispatch => {
+    console.log("delete thunk");
+    const response = await csrfFetch(`/api/images/${imageId}`, {
+        method: "DELETE"
+    });
+    console.log("=============", response)
+    if (response.ok) {
+        const deletedId = await response.json();
+        console.log("__________", deletedId)
+        dispatch(deleteImages(deletedId));
+        return deletedId;
+    };
+};
 
 const initialState = {
     entries: {},
@@ -105,6 +126,10 @@ const imageReducer = (state = initialState, action) => {
                     ...action.newImage
                 }
             };
+        case DELETE_IMAGES:
+            newState = { ...state };
+            delete newState.entries[action.deleteId];
+            return newState;
         default:
             return state;
     };
