@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getImage } from "../../store/image";
-// import Comments from "../Comments";
+import Comments from "../Comments";
 import './Image.css'
 
 const Image = () => {
@@ -48,9 +48,9 @@ const Image = () => {
                     </div>
                     {sessionButton}
                 </div>
-            </div>
-            <div>
-                {/* <Comments image={image} /> */}
+                <div>
+                    <Comments image={image} />
+                </div>
             </div>
         </div>
     );

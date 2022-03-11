@@ -27,7 +27,7 @@ const deleteImages = (deleteId) => ({
 
 export const getImages = () => async dispatch => {
     const response = await csrfFetch("/api/images");
-
+    console.log("____________", response)
     if (response.ok) {
         const images = await response.json();
         dispatch(loadImages(images));

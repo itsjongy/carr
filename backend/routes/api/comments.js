@@ -8,12 +8,25 @@ const commentValidations = require('../../utils/comments');
 
 const router = express.Router();
 
-router.get('/:id', asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
     const comment = await db.Comment.findAll();
     return res.json(comment);
 }));
 
-router.put('/:id/edit', requireAuth, commentValidations.validateUpdate, asyncHandler(async (req, res) => {
+router.get('/:id', asyncHandler(async (req, res) => {
+    const commentId = parseInt(req.params.id, 10);
+    const comment = await db.Comment.findOne({
+        where: {
+            id: commentId,
+        },
+        include: {
+            model: db.User,
+        }
+    });
+    return res.json(comment);
+}))
+
+router.put('/:id', requireAuth, commentValidations.validateUpdate, asyncHandler(async (req, res) => {
     const { id, comment } = req.body;
     await db.Comment.update({ comment }, {
         where: { id },
@@ -34,7 +47,7 @@ router.delete('/:id', requireAuth, asyncHandler(async (req, res) => {
     return res.json(content.id);
 }));
 
-router.post('/new', requireAuth, commentValidations.validateCreate, asyncHandler(async (req, res) => {
+router.post('/new', requireAuth,commentValidations.validateCreate, asyncHandler(async (req, res) => {
     const comment = await db.Comment.create(req.body);
     res.json(comment);
 }));

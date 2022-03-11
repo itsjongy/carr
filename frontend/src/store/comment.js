@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_COMMENTS = "comments/loadComments";
-const LOAD_ONE = "images/loadOne";
+const UPDATE_COMMENTS = "comments/updateComments";
 const ADD_COMMENTS = "comments/addComments";
 const DELETE_COMMENTS = "comments/deleteComments";
 
@@ -11,8 +11,8 @@ const loadComments = (comments, imageId) => ({
     imageId
 });
 
-const loadComment = comment => ({
-    type: LOAD_ONE,
+const updateComments = comment => ({
+    type: UPDATE_COMMENTS,
     comment
 });
 
@@ -28,8 +28,8 @@ const deleteComments = (commentId, imageId) => ({
 });
 
 export const getComments = imageId => async dispatch => {
-    const response = await csrfFetch(`/api/images/${imageId}/comments`);
-
+    const response = await csrfFetch(`/api/comments`);
+    console.log("dsafdsafdfsadfsa" ,response)
     if (response.ok) {
         const comments = await response.json();
         dispatch(loadComments(comments, imageId));
@@ -37,13 +37,13 @@ export const getComments = imageId => async dispatch => {
     };
 }
 
-export const addComment = (data, imageId) => async dispatch => {
-    const response = await csrfFetch(`/api/images/${imageId}/comments`, {
+export const addComment = data => async dispatch => {
+    const response = await csrfFetch(`/api/comments/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     });
-
+    
     if (response.ok) {
         const newComment = await response.json();
         dispatch(addComments(newComment));
@@ -52,7 +52,7 @@ export const addComment = (data, imageId) => async dispatch => {
 };
 
 export const updateComment = data => async dispatch => {
-    const response = await csrfFetch(`/api/images/${data.id}`, {
+    const response = await csrfFetch(`/api/comments/${data.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
@@ -60,15 +60,16 @@ export const updateComment = data => async dispatch => {
 
     if (response.ok) {
         const updatedComment = await response.json();
-        dispatch(loadComment(updatedComment));
+        dispatch(updateComments(updatedComment));
         return updatedComment;
     };
 };
 
 export const deleteComment = (commentId, imageId) => async dispatch => {
-    const response = await csrfFetch(`/api/images/${commentId}`, {
+    const response = await csrfFetch(`/api/comments/${commentId}`, {
         method: "DELETE"
     });
+
     if (response.ok) {
         const deletedId = await response.json();
         dispatch(deleteComments(deletedId, imageId));
@@ -93,7 +94,7 @@ const commentReducer = (state = initialState, action) => {
             });
             newState.entries = newEntries;
             return newState;
-        case LOAD_ONE:
+        case UPDATE_COMMENTS:
             newState = { ...state };
             newEntries = {};
             newEntries[action.comment?.id] = action.comment;
