@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import { addImage } from "../../store/image";
+import './CreateImagePage.css'
+import image1 from './createpage.jpg';
 
 const CreateImage = () => {
     const sessionUser = useSelector(state => state.session.user);
-    console.log("HAHAHAHAHAHHAHA", sessionUser)
     const dispatch = useDispatch();
     const history = useHistory();
     const [imageUrl, setImageUrl] = useState('');
@@ -22,8 +23,6 @@ const CreateImage = () => {
             content
         };
 
-        console.log("HEHEHEHEHEHEHEHEH", createdImage)
-
         if (createdImage) {
             const newImage = await dispatch(addImage(createdImage));
             history.push(`/images/${newImage.id}`);
@@ -36,25 +35,38 @@ const CreateImage = () => {
     };
 
     return (
-        <section className="new-form-holder centered middled">
-            <p className='s'>sssss</p>
-            <form className="createimage-form" onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Image url"
-                    required
-                    value={imageUrl}
-                    onChange={updateImageUrl} />
-                <input
-                    type="text"
-                    placeholder="Description"
-                    required
-                    value={content}
-                    onChange={updateContent} />
-                <button type="submit">Post new image</button>
-                <button type="button" onClick={handleCancelClick}>Cancel</button>
-            </form>
-        </section>
+        <div className='createform'>
+            <section className="new-form-holder">
+                <p className='s'>Create new post</p>
+                <form className="createimage-form" onSubmit={handleSubmit}>
+                    <div className='create-url'>
+                        <input
+                            className='create-imagebox'
+                            type="text"
+                            placeholder="Image url"
+                            required
+                            value={imageUrl}
+                            onChange={updateImageUrl} />
+                    </div>
+                    <div className='create-description'>
+                        <input
+                            className='create-descriptionbox'
+                            type="text"
+                            placeholder="Comment"
+                            required
+                            value={content}
+                            onChange={updateContent} />
+                    </div>
+                    <div className='create-buttons'>
+                        <button className='create-buttonpost' type="submit">Post new image</button>
+                        <button className='create-buttoncancel' type="button" onClick={handleCancelClick}>Cancel</button>
+                    </div>
+                </form>
+            </section>
+            <div>
+                <img className='create-image' src={image1} alt=''></img>
+            </div>
+        </div>
     );
 };
 

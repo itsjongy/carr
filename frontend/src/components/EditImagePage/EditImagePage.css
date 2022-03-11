@@ -1,0 +1,110 @@
+.editform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.edit-form-holder {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 0.25rem;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.a {
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.edit-url {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.edit-description {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.edit-buttons {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.edit-imagebox {
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    width: 100%;
+}
+
+.edit-imagebox:focus {
+    outline-color: #128fdc;
+}
+
+.edit-descriptionbox {
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    width: 100%;
+}
+
+.edit-descriptionbox:focus {
+    outline-color: #128fdc;
+}
+
+.edit-buttonpost {
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    padding: 5px 10px;
+    margin-right: 15px;
+}
+
+.edit-buttonpost:hover {
+    filter: opacity(.5);
+}
+
+.edit-buttoncancel {
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    padding: 5px 10px;
+    margin-right: 15px;
+}
+
+.edit-buttoncancel:hover {
+    filter: opacity(.5);
+}
+
+.edit-buttondelete {
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    padding: 5px 10px;
+}
+
+.edit-buttondelete:hover {
+    filter: opacity(.5);
+}
+
+.edit-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    background-size: cover;
+    height: 100%;
+}
+

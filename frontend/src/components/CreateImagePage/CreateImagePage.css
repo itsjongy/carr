@@ -1,3 +1,95 @@
+.createform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.new-form-holder {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 0.25rem;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .s {
-font-size: 1000px;
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.create-url {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.create-description {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.create-buttons {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.create-imagebox {
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    width: 100%;
+}
+.create-imagebox:focus {
+    outline-color: #128fdc;
+}
+
+.create-descriptionbox {
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    width: 100%;
+}
+
+.create-descriptionbox:focus {
+    outline-color: #128fdc;
+}
+
+.create-buttonpost {
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    padding: 5px 10px;
+    margin-right: 15px;
+}
+
+.create-buttonpost:hover {
+    filter: opacity(.5);
+}
+
+.create-buttoncancel {
+    border-width: 1px;
+    border-color: rgb(137,137,137);
+    border-radius: .25rem;
+    padding: 5px 10px;
+}
+
+.create-buttoncancel:hover {
+    filter: opacity(.5);
+}
+
+.create-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    background-size: cover;
 }

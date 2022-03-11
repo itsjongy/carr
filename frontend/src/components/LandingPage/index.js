@@ -7,6 +7,7 @@ import image2 from './pics/img2.jpg';
 import image3 from './pics/img3.jpg';
 import image4 from './pics/img4.jpg';
 import image5 from './pics/img5.jpg';
+import image6 from './pics/img6.jpg';
 
 
 const images = [image1, image2, image3, image4, image5];
@@ -37,11 +38,24 @@ function LandingPage() {
     return (
         <>
             {sessionUser ? (
-                <div className='postlanding-container'>
-                    <div>
-                        <p className='s'>hi</p>
+                <div class="postlanding-body">
+                    <div class="postlanding-container">
+                        <div className='postlanding-texts'>
+                            <div>
+                                <p className='postlanding-text1'>Welcome to flickrio!</p>
+                            </div >
+                            <div>
+                                <p className='postlanding-text2'>
+                                    Feel free to explore around!
+                                </p>
+                            </div>
+                        </div >
+                        <div>
+                            <img className='background-image' src={image6} alt=""></img>
+                        </div>
                     </div>
                 </div>
+
             ) : (
                 <div className='landing-container'>
                     <div className='landing-texts'>
@@ -70,7 +84,8 @@ function LandingPage() {
                     </div>
                     {/* maybe include a footer? */}
                 </div >
-            )}
+            )
+            }
         </>
     )
 }

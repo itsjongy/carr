@@ -68,12 +68,42 @@
 /* -------------------------------------------------------------------------- */
 
 .postlanding-container {
-    display: grid;
-    height: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    flex-direction: column;
     z-index: 5;
+    overflow: hidden;
+    height: 100%;
 }
-.s{
-    font-size: 100px;
+
+.background-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-size: cover;
+}
+
+.postlanding-texts {
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+}
+
+.postlanding-text1 {
+    font-size: 56px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 0 0 rgba(0, 0, 0, 0.2), 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2), -1px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.postlanding-text2 {
+    font-size: 26px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 0 0 rgba(0, 0, 0, 0.2), 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2), -1px 0 0 rgba(0, 0, 0, 0.2);
 }
