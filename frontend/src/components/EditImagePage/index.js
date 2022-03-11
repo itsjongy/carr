@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateImage, deleteImage } from "../../store/image";
+import image1 from './editpage.jpg';
+import './EditImagePage.css'
 
 const EditImage = () => {
     const img = useSelector(state => state.imageState.entries);
@@ -54,27 +56,37 @@ const EditImage = () => {
     };
 
     return (
-        <section className="edit-form-holder">
+        <div className="editform">
+            <section className="edit-form-holder">
+                <p className="a">Edit post</p>
+                <form className="editimage-form" onSubmit={handleSubmit}>
+                    <div className="edit-url">
+                        <input
+                            className="edit-imagebox"
+                            type="text"
+                            placeholder="Image Url"
+                            value={imageUrl}
+                            onChange={updateImageUrl} />
+                    </div>
+                    <div className='edit-description'>
+                        <input
+                            className='edit-descriptionbox'
+                            type="text"
+                            placeholder="Content"
+                            value={content}
+                            onChange={updateContent} />
+                    </div>
+                    <div className='edit-buttons'>
+                        <button className='edit-buttonpost' type="submit">Update Image</button>
+                        <button className='edit-buttoncancel' type="button" onClick={handleCancelClick}>Cancel</button>
+                        <button className='edit-buttondelete' type="submit" onClick={handleDelete}>Delete</button>
+                    </div>
+                </form>
+            </section>
             <div>
-                <p className="as">dfsdafsdfsafdsa</p>
-                SDOINFDGSAINOAOSIDGNOIDSGNGDSIONGSDNIOK
+                <img className='edit-image' src={image1} alt=''></img>
             </div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Image Url"
-                    value={imageUrl}
-                    onChange={updateImageUrl} />
-                <input
-                    type="text"
-                    placeholder="Content"
-                    value={content}
-                    onChange={updateContent} />
-                <button type="submit">Update Image</button>
-                <button type="button" onClick={handleCancelClick}>Cancel</button>
-                <button type="submit" onClick={handleDelete}>Delete</button>
-            </form>
-        </section>
+        </div>
     );
 };
 
