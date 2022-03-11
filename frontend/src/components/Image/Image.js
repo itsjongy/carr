@@ -9,16 +9,32 @@ const Image = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const imageId = useParams();
+    const sessionUser = useSelector(state => state.session.user);
     const imageObject = useSelector(state => state.imageState.entries);
     const image = imageObject[imageId.id];
+
+    console.log("++++++++++++++++++++++", sessionUser)
+    console.log("-------------------", image)
 
     useEffect(() => {
         dispatch(getImage(imageId.id));
     }, [dispatch, imageId.id]);
 
+
     const handleEdit = (e) => {
         e.preventDefault();
         history.push(`/images/${image?.id}/edit`);
+    }
+
+    let sessionButton;
+    if (sessionUser.id === image.userId) {
+        sessionButton = (
+            <button className="image-edit" onClick={(e) => handleEdit(e)}>Edit</button>
+        )
+    } else {
+        sessionButton = (
+            <></>
+        )
     }
 
     return (
@@ -34,7 +50,7 @@ const Image = () => {
                     <div>
                         <p>{image?.content}</p>
                     </div>
-                    <button className="image-edit" onClick={(e) => handleEdit(e)}>Edit</button>
+                    {sessionButton}
                 </div>
             </div>
             <div>
