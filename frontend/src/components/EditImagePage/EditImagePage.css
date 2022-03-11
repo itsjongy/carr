@@ -72,7 +72,7 @@
 }
 
 .edit-buttonpost:hover {
-    filter: opacity(.5);
+    filter: opacity(.8);
 }
 
 .edit-buttoncancel {
@@ -83,7 +83,7 @@
 }
 
 .edit-buttoncancel:hover {
-    filter: opacity(.5);
+    filter: opacity(.8);
 }
 
 .edit-buttondelete {
@@ -95,7 +95,7 @@
 }
 
 .edit-buttondelete:hover {
-    filter: opacity(.5);
+    filter: opacity(.8);
 }
 
 .edit-image {

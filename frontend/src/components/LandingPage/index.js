@@ -55,7 +55,6 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-
             ) : (
                 <div className='landing-container'>
                     <div className='landing-texts'>

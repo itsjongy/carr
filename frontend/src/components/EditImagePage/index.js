@@ -83,7 +83,7 @@ const EditImage = () => {
                         <input
                             className='edit-descriptionbox'
                             type="text"
-                            placeholder="Content"
+                            placeholder="Comment"
                             value={content}
                             onChange={updateContent} />
                     </div>
