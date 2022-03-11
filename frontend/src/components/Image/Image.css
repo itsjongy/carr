@@ -28,7 +28,7 @@
 
 .image-edit {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: flex-end;
     padding: 5px 10px;
     border-radius: 0.25rem;
