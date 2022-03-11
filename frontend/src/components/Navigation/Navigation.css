@@ -65,6 +65,13 @@
     font-size: 16px;
     text-decoration: none;
     color: white;
+    margin-right: 40px;
+}
+
+.nav-create {
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
 }
 
 .nav-buttons {

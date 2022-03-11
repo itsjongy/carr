@@ -25,11 +25,17 @@ const Image = () => {
         <div className="image-container">
             <div>
                 <div className="image-feed">
-                    <img className="image" src={image?.imageUrl} alt=''></img>
-                    <h3>{image?.User?.username}</h3>
-                    <p>{image?.content}</p>
+                    <img className="image-image" src={image?.imageUrl} alt=''></img>
                 </div>
-                <button onClick={(e) => handleEdit(e)}>Edit</button>
+                <div className="image-userinfo">
+                    <div>
+                        <h3>{image?.User?.username}</h3>
+                    </div>
+                    <div>
+                        <p>{image?.content}</p>
+                    </div>
+                    <button className="image-edit" onClick={(e) => handleEdit(e)}>Edit</button>
+                </div>
             </div>
             <div>
                 <Comments image={image} />
