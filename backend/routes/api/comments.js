@@ -8,7 +8,7 @@ const commentValidations = require('../../utils/comments');
 
 const router = express.Router();
 
-router.get('/:id', requireAuth, asyncHandler(async (req, res) => {
+router.get('/:id', asyncHandler(async (req, res) => {
     const comment = await db.Comment.findAll();
     return res.json(comment);
 }));

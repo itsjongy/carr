@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getImage } from "../../store/image";
+import Comments from "../Comments";
 import './Image.css'
 
 const Image = () => {
@@ -22,12 +23,17 @@ const Image = () => {
 
     return (
         <div className="image-container">
-            <div className="image-feed">
-                <img className="image" src={image?.imageUrl} alt=''></img>
-                <h3>{image?.User?.username}</h3>
-                <p>{image?.content}</p>
+            <div>
+                <div className="image-feed">
+                    <img className="image" src={image?.imageUrl} alt=''></img>
+                    <h3>{image?.User?.username}</h3>
+                    <p>{image?.content}</p>
+                </div>
+                <button onClick={(e) => handleEdit(e)}>Edit</button>
             </div>
-            <button onClick={(e) => handleEdit(e)}>Edit</button>
+            <div>
+                <Comments image={image} />
+            </div>
         </div>
     );
 };
