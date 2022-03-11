@@ -2,24 +2,20 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getImage } from "../../store/image";
-import Comments from "../Comments";
+// import Comments from "../Comments";
 import './Image.css'
 
 const Image = () => {
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const imageId = useParams();
     const sessionUser = useSelector(state => state.session.user);
-    const imageObject = useSelector(state => state.imageState.entries);
-    const image = imageObject[imageId.id];
-
-    console.log("++++++++++++++++++++++", sessionUser)
-    console.log("-------------------", image)
+    const imageObject = useSelector(state => state.imageState);
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const imageId = useParams();
+    const image = imageObject.entries[imageId.id];
 
     useEffect(() => {
         dispatch(getImage(imageId.id));
     }, [dispatch, imageId.id]);
-
 
     const handleEdit = (e) => {
         e.preventDefault();
@@ -27,7 +23,7 @@ const Image = () => {
     }
 
     let sessionButton;
-    if (sessionUser.id === image.userId) {
+    if (sessionUser.id === image?.userId) {
         sessionButton = (
             <button className="image-edit" onClick={(e) => handleEdit(e)}>Edit</button>
         )
@@ -54,7 +50,7 @@ const Image = () => {
                 </div>
             </div>
             <div>
-                <Comments image={image} />
+                {/* <Comments image={image} /> */}
             </div>
         </div>
     );

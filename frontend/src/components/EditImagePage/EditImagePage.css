@@ -80,7 +80,6 @@
     border-color: rgb(137,137,137);
     border-radius: .25rem;
     padding: 5px 10px;
-    margin-right: 15px;
 }
 
 .edit-buttoncancel:hover {
@@ -92,6 +91,7 @@
     border-color: rgb(137,137,137);
     border-radius: .25rem;
     padding: 5px 10px;
+    margin-right: 15px;
 }
 
 .edit-buttondelete:hover {
@@ -107,4 +107,3 @@
     background-size: cover;
     height: 100%;
 }
-

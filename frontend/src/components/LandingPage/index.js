@@ -38,8 +38,8 @@ function LandingPage() {
     return (
         <>
             {sessionUser ? (
-                <div class="postlanding-body">
-                    <div class="postlanding-container">
+                <div className="postlanding-body">
+                    <div className="postlanding-container">
                         <div className='postlanding-texts'>
                             <div>
                                 <p className='postlanding-text1'>Welcome to flickrio!</p>

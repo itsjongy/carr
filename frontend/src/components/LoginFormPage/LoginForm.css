@@ -127,6 +127,7 @@ outline-color: #128fdc;
 }
 
 .demo-button {
+  text-decoration: none;
   margin-left: 4px;
   color: #006dac;
 }

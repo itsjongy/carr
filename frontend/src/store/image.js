@@ -74,14 +74,11 @@ export const updateImage = image => async dispatch => {
 };
 
 export const deleteImage = (imageId) => async dispatch => {
-    console.log("delete thunk");
     const response = await csrfFetch(`/api/images/${imageId}`, {
         method: "DELETE"
     });
-    console.log("=============", response)
     if (response.ok) {
         const deletedId = await response.json();
-        console.log("__________", deletedId)
         dispatch(deleteImages(deletedId));
         return deletedId;
     };

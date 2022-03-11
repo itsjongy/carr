@@ -82,10 +82,12 @@ function LoginFormPage() {
                                         Not a flickrio member?
                                         <a href='/signup' className='login-signup'> Sign up here.</a>
                                     </p>
-                                    <p className='demo'>
-                                        Want to test the site?
-                                        <p className='demo-button' onClick={demoSubmit}>Click here.</p>
-                                    </p>
+                                    <div>
+                                        <p className='demo'>
+                                            Want to test the site?
+                                            <a className='demo-button' href='/' onClick={demoSubmit}>Click here.</a>
+                                        </p>
+                                    </div>
                                 </form>
                             </div>
                         </div>
