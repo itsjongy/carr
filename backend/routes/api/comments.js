@@ -9,7 +9,11 @@ const commentValidations = require('../../utils/comments');
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
-    const comment = await db.Comment.findAll();
+    const comment = await db.Comment.findAll({
+        include: {
+            model: db.User
+        }
+    });
     return res.json(comment);
 }));
 
@@ -47,9 +51,10 @@ router.delete('/:id', requireAuth, asyncHandler(async (req, res) => {
     return res.json(content.id);
 }));
 
-router.post('/new', requireAuth,commentValidations.validateCreate, asyncHandler(async (req, res) => {
+router.post('/new', asyncHandler(async (req, res) => {
     const comment = await db.Comment.create(req.body);
-    res.json(comment);
+    console.log("+++++++++++++", comment)
+    return res.json(comment);
 }));
 
 module.exports = router;

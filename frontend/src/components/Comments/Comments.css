@@ -1,12 +1,14 @@
 .comment-container {
-    height: 100%;
     z-index: 10;
     overflow-x: hidden;
 }
 
 .comment-comment {
-    position: absolute;
     padding-top: 1%;
     margin-left: 20%;
     z-index: 2;
+}
+
+.comment-userscomment{
+    padding-bottom: 10px;
 }

@@ -33,7 +33,7 @@ function Navigation({ isLoaded }) {
     sessionYou = (
       <div>
         <a className='nav-explore' href='/images'>Explore</a>
-        <a className='nav-profile' href='/profile'>You</a>
+        {/* <a className='nav-profile' href='/profile'>You</a> */}
         <a className='nav-create' href='/images/new'>Upload</a>
       </div>
     );

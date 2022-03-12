@@ -29,7 +29,7 @@ const deleteComments = (commentId, imageId) => ({
 
 export const getComments = imageId => async dispatch => {
     const response = await csrfFetch(`/api/comments`);
-    console.log("dsafdsafdfsadfsa" ,response)
+
     if (response.ok) {
         const comments = await response.json();
         dispatch(loadComments(comments, imageId));
@@ -38,14 +38,16 @@ export const getComments = imageId => async dispatch => {
 }
 
 export const addComment = data => async dispatch => {
+    console.log("thunk data", data)
     const response = await csrfFetch(`/api/comments/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     });
-    
+    console.log("thunk response", response)
     if (response.ok) {
         const newComment = await response.json();
+        console.log("newComment ", newComment)
         dispatch(addComments(newComment));
         return newComment;
     };
@@ -89,8 +91,8 @@ const commentReducer = (state = initialState, action) => {
         case LOAD_COMMENTS:
             newState = { ...state };
             newEntries = {};
-            action.images.forEach(comment => {
-                newEntries[comment.id] = comment;
+            action.comments.forEach(comment => {
+                newEntries[comment?.id] = comment;
             });
             newState.entries = newEntries;
             return newState;
@@ -101,20 +103,22 @@ const commentReducer = (state = initialState, action) => {
             newState.entries = newEntries;
             return newState;
         case ADD_COMMENTS:
-            if (!state[action.newComment.id]) {
-                const newState = {
+            // if (!state[action.newComment.id]) {
+                newState = {
                     ...state,
-                    newComment: action.newComment
+                    // action.newComment.id = action.newComment
                 };
+                newState.entries[action.newComment.id] = action.newComment
+                console.log("FIRST NEW state", newState)
                 return newState;
-            };
-            return {
-                ...state,
-                [action.newComment.id]: {
-                    ...state[action.newComment.id],
-                    ...action.newComment
-                }
-            };
+            // };
+            // return {
+            //     ...state,
+            //     [action.newComment.id]: {
+            //         ...state[action.newComment.id],
+            //         ...action.newComment
+            //     }
+            // };
         case DELETE_COMMENTS:
             newState = { ...state };
             delete newState.entries[action.deleteComment];

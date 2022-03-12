@@ -27,7 +27,6 @@ const deleteImages = (deleteId) => ({
 
 export const getImages = () => async dispatch => {
     const response = await csrfFetch("/api/images");
-    console.log("____________", response)
     if (response.ok) {
         const images = await response.json();
         dispatch(loadImages(images));
@@ -111,7 +110,6 @@ const imageReducer = (state = initialState, action) => {
             if (!state[action.newImage.id]) {
                 const newState = {
                     ...state,
-                    // [action.newImage.id]: action.newImage
                     newImage: action.newImage
                 };
                 return newState;

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getImage } from "../../store/image";
 import Comments from "../Comments";
+import CreateComment from "../CreateComments";
 import './Image.css'
 
 const Image = () => {
@@ -23,7 +24,7 @@ const Image = () => {
     }
 
     let sessionButton;
-    if (sessionUser.id === image?.userId) {
+    if (sessionUser?.id === image?.userId) {
         sessionButton = (
             <button className="image-edit" onClick={(e) => handleEdit(e)}>Edit</button>
         )
@@ -38,6 +39,9 @@ const Image = () => {
             <div>
                 <div className="image-feed">
                     <img className="image-image" src={image?.imageUrl} alt=''></img>
+                </div>
+                <div>
+                    <CreateComment />
                 </div>
                 <div className="image-userinfo">
                     <div>
