@@ -10,6 +10,7 @@ const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
     const image = await db.Image.findAll();
+    console.log("HOHOHOHOHOHO",image);
     return res.json(image);
 }));
 
@@ -51,6 +52,5 @@ router.post('/new', requireAuth, imageValidations.validateCreate, asyncHandler(a
     const image = await db.Image.create(req.body);
     res.json(image);
 }));
-
 
 module.exports = router;

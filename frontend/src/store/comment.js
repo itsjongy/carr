@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_COMMENTS = "comments/loadComments";
-const LOAD_ONE = "images/loadOne";
+const UPDATE_COMMENTS = "comments/updateComments";
 const ADD_COMMENTS = "comments/addComments";
 const DELETE_COMMENTS = "comments/deleteComments";
 
@@ -11,8 +11,8 @@ const loadComments = (comments, imageId) => ({
     imageId
 });
 
-const loadComment = comment => ({
-    type: LOAD_ONE,
+const updateComments = comment => ({
+    type: UPDATE_COMMENTS,
     comment
 });
 
@@ -28,7 +28,7 @@ const deleteComments = (commentId, imageId) => ({
 });
 
 export const getComments = imageId => async dispatch => {
-    const response = await csrfFetch(`/api/images/${imageId}/comments`);
+    const response = await csrfFetch(`/api/comments`);
 
     if (response.ok) {
         const comments = await response.json();
@@ -37,22 +37,24 @@ export const getComments = imageId => async dispatch => {
     };
 }
 
-export const addComment = (data, imageId) => async dispatch => {
-    const response = await csrfFetch(`/api/images/${imageId}/comments`, {
+export const addComment = data => async dispatch => {
+    console.log("thunk data", data)
+    const response = await csrfFetch(`/api/comments/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     });
-
+    console.log("thunk response", response)
     if (response.ok) {
         const newComment = await response.json();
+        console.log("newComment ", newComment)
         dispatch(addComments(newComment));
         return newComment;
     };
 };
 
 export const updateComment = data => async dispatch => {
-    const response = await csrfFetch(`/api/images/${data.id}`, {
+    const response = await csrfFetch(`/api/comments/${data.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
@@ -60,15 +62,16 @@ export const updateComment = data => async dispatch => {
 
     if (response.ok) {
         const updatedComment = await response.json();
-        dispatch(loadComment(updatedComment));
+        dispatch(updateComments(updatedComment));
         return updatedComment;
     };
 };
 
 export const deleteComment = (commentId, imageId) => async dispatch => {
-    const response = await csrfFetch(`/api/images/${commentId}`, {
+    const response = await csrfFetch(`/api/comments/${commentId}`, {
         method: "DELETE"
     });
+
     if (response.ok) {
         const deletedId = await response.json();
         dispatch(deleteComments(deletedId, imageId));
@@ -88,32 +91,34 @@ const commentReducer = (state = initialState, action) => {
         case LOAD_COMMENTS:
             newState = { ...state };
             newEntries = {};
-            action.images.forEach(comment => {
-                newEntries[comment.id] = comment;
+            action.comments.forEach(comment => {
+                newEntries[comment?.id] = comment;
             });
             newState.entries = newEntries;
             return newState;
-        case LOAD_ONE:
+        case UPDATE_COMMENTS:
             newState = { ...state };
             newEntries = {};
             newEntries[action.comment?.id] = action.comment;
             newState.entries = newEntries;
             return newState;
         case ADD_COMMENTS:
-            if (!state[action.newComment.id]) {
-                const newState = {
+            // if (!state[action.newComment.id]) {
+                newState = {
                     ...state,
-                    newComment: action.newComment
+                    // action.newComment.id = action.newComment
                 };
+                newState.entries[action.newComment.id] = action.newComment
+                console.log("FIRST NEW state", newState)
                 return newState;
-            };
-            return {
-                ...state,
-                [action.newComment.id]: {
-                    ...state[action.newComment.id],
-                    ...action.newComment
-                }
-            };
+            // };
+            // return {
+            //     ...state,
+            //     [action.newComment.id]: {
+            //         ...state[action.newComment.id],
+            //         ...action.newComment
+            //     }
+            // };
         case DELETE_COMMENTS:
             newState = { ...state };
             delete newState.entries[action.deleteComment];

@@ -7,7 +7,7 @@ import sessionReducer from './session';
 const rootReducer = combineReducers({
   session: sessionReducer,
   imageState: imageReducer,
-  commentState: commentReducer
+  commentState: commentReducer,
 });
 
 let enhancer;

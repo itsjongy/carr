@@ -1,3 +1,14 @@
-.p {
-    display: flex;
+.comment-container {
+    z-index: 10;
+    overflow-x: hidden;
+}
+
+.comment-comment {
+    padding-top: 1%;
+    margin-left: 20%;
+    z-index: 2;
+}
+
+.comment-userscomment{
+    padding-bottom: 10px;
 }
