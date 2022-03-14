@@ -10,7 +10,6 @@ const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
     const image = await db.Image.findAll();
-    console.log("HOHOHOHOHOHO",image);
     return res.json(image);
 }));
 

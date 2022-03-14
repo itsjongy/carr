@@ -32,14 +32,11 @@ router.get('/:id', asyncHandler(async (req, res) => {
 
 router.put('/:id', requireAuth, commentValidations.validateUpdate, asyncHandler(async (req, res) => {
     const { id, comment } = req.body;
-    await db.Comment.update({ comment }, {
+    const content = await db.Comment.update({ comment }, {
         where: { id },
         returning: true,
     });
-    const content = await db.Comment.findOne({
-        where: { id: parseInt(id) }
-    });
-    return res.json(content);
+    return res.json(content[1][0]);
 }));
 
 router.delete('/:id', requireAuth, asyncHandler(async (req, res) => {
@@ -51,9 +48,8 @@ router.delete('/:id', requireAuth, asyncHandler(async (req, res) => {
     return res.json(content.id);
 }));
 
-router.post('/new', asyncHandler(async (req, res) => {
+router.post('/new', requireAuth, commentValidations.validateCreate, asyncHandler(async (req, res) => {
     const comment = await db.Comment.create(req.body);
-    console.log("+++++++++++++", comment)
     return res.json(comment);
 }));
 

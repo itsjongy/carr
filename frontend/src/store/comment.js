@@ -38,16 +38,13 @@ export const getComments = imageId => async dispatch => {
 }
 
 export const addComment = data => async dispatch => {
-    console.log("thunk data", data)
     const response = await csrfFetch(`/api/comments/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     });
-    console.log("thunk response", response)
     if (response.ok) {
         const newComment = await response.json();
-        console.log("newComment ", newComment)
         dispatch(addComments(newComment));
         return newComment;
     };
@@ -98,27 +95,24 @@ const commentReducer = (state = initialState, action) => {
             return newState;
         case UPDATE_COMMENTS:
             newState = { ...state };
-            newEntries = {};
-            newEntries[action.comment?.id] = action.comment;
-            newState.entries = newEntries;
+            newState.entries[action.comment.id] = action.comment;
             return newState;
         case ADD_COMMENTS:
             // if (!state[action.newComment.id]) {
-                newState = {
-                    ...state,
-                    // action.newComment.id = action.newComment
-                };
-                newState.entries[action.newComment.id] = action.newComment
-                console.log("FIRST NEW state", newState)
-                return newState;
-            // };
-            // return {
-            //     ...state,
-            //     [action.newComment.id]: {
-            //         ...state[action.newComment.id],
-            //         ...action.newComment
-            //     }
-            // };
+            newState = {
+                ...state,
+                // action.newComment.id = action.newComment
+            };
+            newState.entries[action.newComment.id] = action.newComment
+            return newState;
+        // };
+        // return {
+        //     ...state,
+        //     [action.newComment.id]: {
+        //         ...state[action.newComment.id],
+        //         ...action.newComment
+        //     }
+        // };
         case DELETE_COMMENTS:
             newState = { ...state };
             delete newState.entries[action.deleteComment];

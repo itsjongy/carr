@@ -8,7 +8,6 @@ const CreateComment = () => {
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const imageId = useParams();
-    console.log("imageId in component", imageId)
 
     const [comment, setComment] = useState('');
 
@@ -25,8 +24,6 @@ const CreateComment = () => {
 
         await dispatch(addComment(createdComment));
         await dispatch(getComments());
-        // const newComment = await dispatch(addComment(createdComment));
-        // history.push(`/images/${imageId.id}`);
     }
 
     let sessionComment;
@@ -54,12 +51,7 @@ const CreateComment = () => {
 
     return (
         <div className='createcommentform'>
-            <section className="new-commentform-holder">
-            </section>
             {sessionComment}
-            {/* <div>
-                <img className='create-comment' src={comment1} alt=''></img>
-            </div> */}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateImage, deleteImage } from "../../store/image";
@@ -6,7 +6,7 @@ import image1 from './editpage.jpg';
 import './EditImagePage.css'
 
 const EditImage = () => {
-    const sessionUser = useSelector(state => state.session.user)
+    const sessionUser = useSelector(state => state.session.user);
     const img = useSelector(state => state.imageState.entries);
     const dispatch = useDispatch();
     const { id } = useParams();

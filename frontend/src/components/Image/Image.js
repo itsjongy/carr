@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { getImage } from "../../store/image";
 import Comments from "../Comments";
 import CreateComment from "../CreateComments";
+// import EditComment from "../EditComments";
 import './Image.css'
 
 const Image = () => {
