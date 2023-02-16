@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Images', [
+    return queryInterface.bulkInsert(options, [
       {
         userId: 2,
         imageUrl: 'https://pbs.twimg.com/ext_tw_video_thumb/1486443897458937868/pu/img/S24DxTyGijP5XbsH?format=jpg&name=large',
@@ -54,6 +54,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Images', null, {});
+    return queryInterface.bulkDelete(options, null, {});
   }
 };
