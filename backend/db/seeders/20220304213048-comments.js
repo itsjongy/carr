@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Comments', [
+    return queryInterface.bulkInsert(options, [
       {
         userId: 6,
         imageId: 5,
@@ -33,6 +33,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Comments', null, {});
+    return queryInterface.bulkDelete(options, null, {});
   }
 };
