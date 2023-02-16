@@ -2,7 +2,7 @@
 
 This is a Sanrio clone of [Flickr](https://www.flickr.com/).
 <br/>
-Access to the live site: [flickrio](https://helloflickrio.herokuapp.com/)
+Access to the live site: [flickrio](https://flickrio.onrender.com/)
 
 ## Index
 | [Feature List](https://github.com/itsjongy/flickrio/wiki/Feature-List) | [Database Scheme](https://github.com/itsjongy/flickrio/wiki/Database-Schema) |
