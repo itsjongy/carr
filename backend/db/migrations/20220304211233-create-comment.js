@@ -1,11 +1,4 @@
 'use strict';
-
-let options = {};
-options.tableName = 'Comments';
-if (process.env.NODE_ENV === 'production') {
-  options.schema = process.env.SCHEMA;  // define your schema in options object
-}
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Comments', {
@@ -37,9 +30,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    }, options);
+    });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Comments', options);
+    return queryInterface.dropTable('Comments');
   }
 };

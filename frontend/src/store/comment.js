@@ -98,11 +98,21 @@ const commentReducer = (state = initialState, action) => {
             newState.entries[action.comment.id] = action.comment;
             return newState;
         case ADD_COMMENTS:
+            // if (!state[action.newComment.id]) {
             newState = {
                 ...state,
+                // action.newComment.id = action.newComment
             };
             newState.entries[action.newComment.id] = action.newComment
             return newState;
+        // };
+        // return {
+        //     ...state,
+        //     [action.newComment.id]: {
+        //         ...state[action.newComment.id],
+        //         ...action.newComment
+        //     }
+        // };
         case DELETE_COMMENTS:
             newState = { ...state };
             delete newState.entries[action.deleteComment];

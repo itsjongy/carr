@@ -51,11 +51,14 @@ const EditComment = ({ commentId }) => {
 
         let deletedComment = {
             userId: sessionUser.id,
-            id: commentId,
+            id: parseInt(commentId),
             comment: comment,
         };
-        await dispatch(deleteComment(deletedComment));
-        await dispatch(getComments());
+
+        if (deletedComment) {
+            await dispatch(deleteComment());
+            await dispatch(getComments());
+        }
     }
 
     return (
@@ -73,7 +76,7 @@ const EditComment = ({ commentId }) => {
                             onChange={updatingComment} />
                         <div className="editcomment-button">
                             <button className='editcomment-buttonpost'>Edit</button>
-                            <button className='editcomment-buttondelete' type="button" onClick={handleDelete}>Delete</button>
+                            {/* <button className='editcomment-buttondelete' type="button" onClick={handleDelete}>Delete</button> */}
                         </div>
                     </div>
                 </form>

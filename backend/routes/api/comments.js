@@ -39,16 +39,14 @@ router.put('/:id', requireAuth, commentValidations.validateUpdate, asyncHandler(
     return res.json(content[1][0]);
 }));
 
-router.delete('/:id',
-    requireAuth,
-    asyncHandler(async (req, res) => {
-        const content = await db.Comment.findOne({
-            where: { id: parseInt(req.params.id) }
-        });
-        if (!content) throw new Error("Can't find comment.");
-        await content.destroy();
-        return res.json(content.id);
-    }));
+router.delete('/:id', requireAuth, asyncHandler(async (req, res) => {
+    const content = await db.Comment.findOne({
+        where: { id: parseInt(req.params.id) }
+    });
+    if (!content) throw new Error("Can't find comment.");
+    await content.destroy();
+    return res.json(content.id);
+}));
 
 router.post('/new', requireAuth, commentValidations.validateCreate, asyncHandler(async (req, res) => {
     const comment = await db.Comment.create(req.body);
